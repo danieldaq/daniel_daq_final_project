@@ -1,12 +1,13 @@
-var score = 0;
 var levelNumber = 1;
-var $buttonOne, 
-	$buttonTwo,
-	$buttonThree,
-	$buttonFour,
-	$buttonFive,
-	$buttonSix;
 	// $menuIcon;
+var score = 0;
+var answers = [
+	"",
+	"Helvetica",
+	"Clarendon",
+	"Gill Sans"
+]
+
 var fonts = [
 	"Arial",
 	"Avant Garde",
@@ -35,50 +36,18 @@ var fonts = [
 	"Wingdings"
 ];
 
-var usedFonts = [];
-
-//// Create Array with all the font names
-//// Use that array for randomization
+var usedFonts = []; //// Array used to put fonts that are already used in buttons; prevents name from being written twice
 
 $(document).ready(function(){
 
-	$buttonOne = $("#button-1");
-	$buttonTwo = $("#button-2");
-	$buttonThree = $("#button-3");
-	$buttonFour = $("#button-4");
-	$buttonFive = $("#button-5");
-	$buttonSix = $("#button-6");
-	// $menuIcon = $("#menu-icon");
-
-	// $buttonOne.on("click", colorCorrect);
-	// $buttonTwo.on("click", colorWrong);
-	// $buttonThree.on("click", colorWrong);
-	// $buttonFour.on("click", colorWrong);
-	// $buttonFive.on("click", colorWrong);
-	// $buttonSix.on("click", colorWrong);
-	// $menuIcon.on("click", slideMenu);
-
-	levelButtons1();
+	writeButtons();
+	writeCorrectButton();
 
 })
 
 
+
 //////// BUTTON RANDOMIZATION
-
-
-
-// Randomly fill button text (<li>) with array of font names
-
-// Selects item from array "fonts" at random
-fonts[Math.floor(Math.random()*fonts.length)];  // Always a new item when code runs
-var randomFont = fonts[Math.floor(Math.random()*fonts.length)]; // Sets "randomFont" as the same font each time code runs
-
-
-
-//////// HARDCODED LEVEL ANSWERS
-
-// Splice out array items
-// Separate array to keep track of used items
 
 // Newly generated random fonts should be compared to a previous fonts chosen
 // Previous fonts chosen --> saved into array (push into an empty array)
@@ -86,54 +55,62 @@ var randomFont = fonts[Math.floor(Math.random()*fonts.length)]; // Sets "randomF
 // If it does, then generate again
 
 
-function levelButtons1() {
-	$buttonOne.text("Helvetica").on("click", colorCorrect);
-	$buttonTwo.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonThree.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonFour.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonFive.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonSix.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
+//// Checks if generated font is in "usedFonts"
+function inArray (item, array) {
+	var count = array.length || 1;
+	for (var i=0; i<count; i++) {
+		if (array[i] === item) {
+			return true;
+		}
+	}
+	return false;
 }
 
-function levelButtons2() {
-	$buttonOne.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonTwo.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonThree.text("Clarendon").on("click", colorCorrect);
-	$buttonFour.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonFive.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonSix.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
+//// Writes all buttons at random
+function writeButtons() {
+	for (var i = 0; i<6; i++) { 
+		var randomFont = fonts[Math.floor(Math.random()*fonts.length)]; //// Chooses font at random
+		while (randomFont === answers[levelNumber] === true || inArray(randomFont, usedFonts)) { //// Conditions that need to be met before a font is written into a button
+			randomFont = fonts[Math.floor(Math.random()*fonts.length)]; //// If conditions aren't met, then font is generated again
+		}
+		$("ul").append("<li class='button'>" + randomFont + "</li>"); //// Appends new <li> with generated font
+		usedFonts.push(randomFont); //// Puts font name into list for later comparison
+	}
+	$("ul li").on("click", colorWrong); //// Sets all "li" with click listener
 }
 
-function levelButtons3() {
-	$buttonOne.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonTwo.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonThree.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonFour.text("Gill Sans").on("click", colorCorrect);
-	$buttonFive.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
-	$buttonSix.text(fonts[Math.floor(Math.random()*fonts.length)]).on("click", colorWrong);
+//// Overwrites one of the six "li" at random with the correct answer
+function writeCorrectButton() {
+	$("ul li:eq(" + Math.floor(Math.random()*6) + ")").text(answers[levelNumber])
+													  .attr("id", "correct")
+													  .on("click", colorCorrect);
 }
 
+
+
+//////// BUTTON APPEARANCE (ON CLICK)
 
 ////When correct button is clicked
 function colorCorrect() {
-    $buttonOne.css("background", "rgb(94, 192, 0)"); // Highlights correct button
+    $("#correct").css("background", "rgb(94, 192, 0)"); // Highlights correct button
     showInfo();
-    score++;
-    console.log("score:", score);
+    $("ul li").unbind("click");
 }
 
 ////When wrong button is clicked
 function colorWrong() {
     $(this).css("background", "rgb(255, 111, 119)"); // Highlights selected incorrect button
-    $buttonOne.css("background", "rgb(94, 192, 0)"); // Highlights correct answer
+    $("#correct").css("background", "rgb(94, 192, 0)"); // Highlights correct answer
     showInfo();
+    $("ul li").unbind("click");
 }
 
 ////Brings up font info
 function showInfo() {
-	$(".footer-info").html("<div id='info'><p><span class='bold'>Designer:</span> Max Miedinger, Eduard Hoffman</p><p><span class='bold'>Created:</span> 1957</p></div><div id='next'>next level ></div>");
+	$(".footer-info").html("<div id='info'><p><span class='bold'>Designer:</span>" + "</p><p><span class='bold'>Created:</span>" + "</p></div><div id='next'>next level ></div>");
 	$("#next").on("click", nextLevel);
 }
+
 
 
 
@@ -147,22 +124,22 @@ function showInfo() {
 
 //////// NEXT LEVEL
 
-////Resets level appearance
-// function nextLevel() {
-// 	$(".footer-info").html("");
-// 	$(".button").css("background", "rgb(98, 134, 136)");
-// 	levelNumber++;
-//     $("#level").text("Level " + levelNumber); // Changes Level # shown on window
-//     $("#word-image").attr("src", "images/level" + levelNumber + ".png"); // Changes word-image
-// }
-
 function nextLevel() {
+	levelNumber++;
+	$("ul").html("");
+	usedFonts = [];
+	writeButtons();
+	writeCorrectButton();
+	resetAppearance();
+}
+
+function resetAppearance() {
 	$(".footer-info").html("");
 	$(".button").css("background", "rgb(98, 134, 136)");
-	levelNumber++;
     $("#level").text("Level " + levelNumber); // Changes Level # shown on window
     $("#word-image").attr("src", "images/level" + levelNumber + ".png"); // Changes word-image
 }
+
 
 
 //////SIDEBAR FUNCTIONS////////
