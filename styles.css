@@ -4,25 +4,30 @@ body {
 	font-family: 'Josefin Slab', serif;
 	font-weight: 300;
 	font-style: italic;
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .center {
-	width: 950px;
+	width: 775px;
 	margin: auto;
 }
 
 header {
 	overflow: hidden;
+	margin-top: 30px;
 	padding: 20px 0;
 }
 
 h3 {
-	float: left;
-	margin-top: 10px;
+	font-weight: 300;
+	margin-top: 0;
 }
 
-#menu-icon {
+#level {
+	float: left;
+}
+
+#score {
 	float: right;
 }
 
@@ -33,9 +38,6 @@ h3 {
 
 .button-container {
 	overflow: hidden;
-}
-
-.button-container ul {
 	list-style-type: none;
 	padding-left: 0;
 	margin: 0;
@@ -50,13 +52,14 @@ h3 {
 	width: 31.33%;
 	margin: 1% 1%;
 	padding: 3% 0;
+	transition: background 200ms;
 }
 
 .button:hover {
 	background: rgb(72, 115, 115);
 }
 
-section.footer-info {
+footer {
 	margin-top: 3%;
 	float: both;
 }
@@ -64,6 +67,7 @@ section.footer-info {
 #info {
 	float: left;
 	font-size: 0.75em;
+	margin-left: 1%;
 }
 
 p {
@@ -75,31 +79,107 @@ p {
 	font-weight: 600;
 }
 
-#next {
-	color: rgb(54, 86, 89);
+.footer-button {
 	float: right;
+	color: rgb(54, 86, 89);
 	background: rgb(255, 255, 255);
 	border-radius: 10px;
 	text-align: center;
+	margin: 1.5% 1% 0 0.5%;
 	width: 18%;
-	padding: 1.5% 0;
+	padding: 1.75% 0;
 	font-size: 0.75em;
 	font-weight: 600;
 }
 
-#next:hover {
+.footer-button:hover {
 	background: rgb(98, 134, 136);
 	color: rgb(255, 255, 255);
-	font-weight: 300;
+	transition: background 200ms, color 200ms;
 }
 
-/*#sidebar {
-	background: rgb(72, 115, 115);
-	box-shadow: -5px 0 50px rgba(0,0,0,0.4);
-	width: 250px;
-	height: 100vh;
-	position: fixed;
-	right: 0px;
-	top: 0;
-}*/
+a {
+	text-decoration: none;
+}
 
+
+/*FINAL SCORE PAGE*/
+
+section {
+	margin-top: 40px;
+	padding: 0 1%;
+}
+
+.final-score {
+	float: left;
+	width: 38%;
+	margin-right: 10%;
+}
+
+.correct-fonts {
+	float: left;
+	width: 22%;
+}
+
+.incorrect-fonts {
+	float: left;
+	width: 22%;
+}
+
+.score-box {
+	background: rgb(98, 134, 136);
+	border-radius: 10px;
+	text-align: center;
+	font-size: 2em;
+}
+
+#play-again {
+	font-weight: 300;
+	background: rgb(72, 115, 115);
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 50px;
+	padding: 4% 0;
+	transition: background 150ms, color 150ms;
+}
+
+#play-again:hover {
+	background: rgb(98, 134, 136);
+	color: rgb(255, 255, 255);
+}
+
+h1 {
+	font-size: 2.8em;
+	font-weight: 300;
+	margin: 0;
+}
+
+h4 {
+	color: rgb(98, 134, 136);
+	font-weight: 600;
+	margin: 0;
+}
+
+.final-score h4 {
+	margin-top: 25px;
+	padding: 5px 0;
+}
+
+h4.list {
+	margin-top: 10px;
+}
+
+#large {
+	font-size: 3em;
+}
+
+section ul {
+	padding: 0;
+	list-style-type: none;
+	margin-top: 10px;
+}
+
+section ul li {
+	font-size: 0.75em;
+	line-height: 25px;
+}
