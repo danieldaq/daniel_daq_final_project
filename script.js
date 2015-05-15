@@ -301,7 +301,7 @@ function nextLevelAppearance() {
 
 function writeFinalScorePage() {
 	$("body").html("<section class='final-score'></section><section class='correct-fonts'></section><section class='incorrect-fonts'></section>");
-	$(".final-score").html("<h1>Font Quiz</h1><h4>Final Score:</h4><div class='score-box'><span id='large'>" + score +"</span> / 24</div><div id='play-again'>Play Again</div>");
+	$(".final-score").html("<h1>Font Quiz</h1><h6>Created by Daniel Daquigan</h6><h4>Final Score:</h4><div class='score-box'><span id='large'>" + score +"</span> / 24</div><div id='play-again'>Play Again</div>");
 	$("#play-again").on("click", playAgain);
 	$(".correct-fonts").html("<h4 class='list'>Correct:</h4><ul id='correct-list'></ul>");
 	$(".incorrect-fonts").html("<h4 class='list'>Incorrect:</h4><ul id='incorrect-list'></ul>")
