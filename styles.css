@@ -183,3 +183,57 @@ section ul li {
 	font-size: 0.75em;
 	line-height: 25px;
 }
+
+
+/* Responsive CSS */
+
+@media all and (max-width: 800px) {
+	body {
+		background: rgb(54, 86, 89);
+		color: rgb(255, 255, 255);
+		font-family: 'Josefin Slab', serif;
+		font-weight: 300;
+		font-style: italic;
+		font-size: 25px;
+	}
+
+	.center {
+		width: 600px;
+		margin: auto;
+	}
+
+	#word-image {
+		display: block;
+		margin: 75px auto;
+	}
+
+	.button {
+		color: white;
+		float: left;
+		background: rgb(98, 134, 136);
+		border-radius: 10px;
+		text-align: center;
+		width: 98%;
+		margin: 1% 1%;
+		padding: 3% 0;
+		transition: background 200ms;
+	}
+
+	#info {
+		text-align: center;
+		font-size: 0.75em;
+		margin: 5% 0;
+	}
+
+	.footer-button {
+		color: rgb(54, 86, 89);
+		background: rgb(255, 255, 255);
+		border-radius: 10px;
+		text-align: center;
+		margin: 3% 1% 0 0.5%;
+		width: 98%;
+		padding: 3% 0;
+		font-size: 0.75em;
+		font-weight: 600;
+	}
+}
