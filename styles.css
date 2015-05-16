@@ -108,21 +108,19 @@ a {
 section {
 	margin-top: 40px;
 	padding: 0 1%;
+	float: left;
 }
 
 .final-score {
-	float: left;
 	width: 38%;
 	margin-right: 10%;
 }
 
 .correct-fonts {
-	float: left;
 	width: 22%;
 }
 
 .incorrect-fonts {
-	float: left;
 	width: 22%;
 }
 
@@ -195,7 +193,7 @@ section ul li {
 
 /* Responsive CSS */
 
-@media all and (max-width: 800px) {
+@media only screen and (min-device-width: 374px) and (max-device-width: 376px) {
 	body {
 		background: rgb(54, 86, 89);
 		color: rgb(255, 255, 255);
@@ -206,13 +204,25 @@ section ul li {
 	}
 
 	.center {
-		width: 600px;
+		width: 350px;
 		margin: auto;
+	}
+
+	header {
+		overflow: hidden;
+		margin-top: 20px;
+		padding: 0;
+	}
+
+	h3 {
+		font-weight: 300;
+		margin: 0;
 	}
 
 	#word-image {
 		display: block;
-		margin: 75px auto;
+		margin: 40px auto;
+		width: 90%;
 	}
 
 	.button {
@@ -228,20 +238,101 @@ section ul li {
 	}
 
 	#info {
-		text-align: center;
-		font-size: 0.75em;
-		margin: 5% 0;
+		text-align: left;
+		font-size: 0.5em;
+		width: 65%;
+		margin: 1% 0;
 	}
 
 	.footer-button {
 		color: rgb(54, 86, 89);
 		background: rgb(255, 255, 255);
+		border-radius: 5px;
+		text-align: center;
+		margin: 1% 1% 0 0.5%;
+		width: 30%;
+		padding: 1% 0;
+		font-size: 0.6em;
+		font-weight: 600;
+		float: right;
+		clear: right;
+	}
+
+	#next {
+		padding: 3% 0;
+	}
+
+	/* Final Score Page */
+	section {
+		margin-top: 0px;
+		padding: 0 1%;
+	}
+
+	.final-score {
+		float: none;
+		clear: both;
+		width: 100%;
+		margin-right: 0;
+		margin-top: 40px;
+	}
+
+	.correct-fonts {
+		float: left;
+		margin-top: 20px;
+		width: 48%;
+	}
+
+	.incorrect-fonts {
+		float: left;
+		margin-top: 20px;
+		width: 48%;
+	}
+
+	.score-box {
+		background: rgb(98, 134, 136);
 		border-radius: 10px;
 		text-align: center;
-		margin: 3% 1% 0 0.5%;
-		width: 98%;
-		padding: 3% 0;
-		font-size: 0.75em;
+		font-size: 2em;
+	}
+
+	#large {
+		font-size: 2.5em;
+	}
+
+	#play-again {
+		font-weight: 300;
+		background: rgb(72, 115, 115);
+		border-radius: 10px;
+		text-align: center;
+		margin-top: 20px;
+		padding: 4% 0;
+		transition: background 150ms, color 150ms;
+	}
+
+	h1 {
+		font-family: Helvetica, sans-serif;
+		font-size: 2.7em;
+		font-weight: 300;
+		font-style: normal;
+		margin: 0;
+		text-align: center
+	}
+
+	h6 {
+		margin: 0;
+		font-weight: 300;
+		text-align: center;
+		color: rgb(98, 134, 136);
 		font-weight: 600;
+	}
+
+	h4 {
+		color: rgb(98, 134, 136);
+		font-weight: 600;
+		margin: 0;
+	}
+
+	h4.list {
+		margin-top: 5px;
 	}
 }

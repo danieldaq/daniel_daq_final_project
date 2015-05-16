@@ -294,8 +294,8 @@ function writeNextLevel() {
 function nextLevelAppearance() {
 	$("footer").html(""); // Clears out footer
     $("#level").text("Level " + levelNumber); // Changes Level # shown on window
+    $("#word-image").css({'opacity': '0', 'position': 'relative', 'top': '-75px'})
     $("#word-image").attr("src", "images/level" + levelNumber + ".png") // Changes word-image
-					.css({'opacity': '0', 'position': 'relative', 'top': '-75px'})
 					.animate({opacity: '1'}, {queue: false, duration: 600})
 					.animate({top: '0'}, {queue: false, duration: 400});
 }
