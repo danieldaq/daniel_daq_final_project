@@ -272,9 +272,11 @@ function scoreIncrease() {
 
 function showInfo(fontname) {
 	var fontQuery = $("#correct").text().split(" ").join("+")
-	$("footer").html("<div id='info'></div><div class='footer-button' id='next'>Next Level ></div><a class='footer-button' id='see-font' target='_blank' href='http://fontsinuse.com/search?terms=" + fontQuery + "'>See Font</a>");
+	$("footer").html("<div id='info'></div><div class='footer-button' id='next'>Next Level ></div><a class='footer-button' id='see-font' target='_blank' href='http://fontsinuse.com/search?terms=" + fontQuery + "'>See Font</a>")
+	           .css({'opacity': '0'});
 	$("#info").html("<p><span class='bold'>Name: </span>" + fontname + "</p><p><span class='bold'>Designer: </span>" + fonts[fontname].Designer + "</p><p><span class='bold'>Created: </span>" + fonts[fontname].Created + "</p>");
 	$("#next").on("click", writeNextLevel);
+	$("footer").animate({opacity:'1'}, 300);
 }
 
 
@@ -292,7 +294,10 @@ function writeNextLevel() {
 function nextLevelAppearance() {
 	$("footer").html(""); // Clears out footer
     $("#level").text("Level " + levelNumber); // Changes Level # shown on window
-    $("#word-image").attr("src", "images/level" + levelNumber + ".png"); // Changes word-image
+    $("#word-image").attr("src", "images/level" + levelNumber + ".png") // Changes word-image
+					.css({'opacity': '0', 'position': 'relative', 'top': '-75px'})
+					.animate({opacity: '1'}, {queue: false, duration: 600})
+					.animate({top: '0'}, {queue: false, duration: 400});
 }
 
 
@@ -300,25 +305,26 @@ function nextLevelAppearance() {
 //////// FINAL SCORE PAGE
 
 function writeFinalScorePage() {
-	$("body").html("<section class='final-score'></section><section class='correct-fonts'></section><section class='incorrect-fonts'></section>");
+	$("body").html("<section class='final-score'></section><section class='correct-fonts'></section><section class='incorrect-fonts'></section>")
+			 .css("opacity", "0");
 	$(".final-score").html("<h1>Font Quiz</h1><h6>Created by Daniel Daquigan</h6><h4>Final Score:</h4><div class='score-box'><span id='large'>" + score +"</span> / 24</div><div id='play-again'>Play Again</div>");
 	$("#play-again").on("click", playAgain);
 	$(".correct-fonts").html("<h4 class='list'>Correct:</h4><ul id='correct-list'></ul>");
 	$(".incorrect-fonts").html("<h4 class='list'>Incorrect:</h4><ul id='incorrect-list'></ul>")
-	writeCorrectFonts();
-	writeIncorrectFonts();
+	writeFontList();
+	$("body").animate({opacity: '1'}, 750);
 }
 
-function writeCorrectFonts() {
+function writeFontList() {
 	$.each(correctFonts, function(i) {
 		$("<li/>").text(correctFonts[i]).appendTo($("ul#correct-list"));
 	});
-}
-
-function writeIncorrectFonts() {
 	$.each(incorrectFonts, function(i) {
 		$("<li/>").text(incorrectFonts[i]).appendTo($("ul#incorrect-list"));
 	});
+	$("section ul li").css({'opacity': '0', 'line-height': '0'})
+					  .animate({opacity: '1'}, {queue: false, duration: 1500})
+					  .animate({'line-height': '25px'}, {queue: false, duration: 1000})
 }
 
 function playAgain() {
